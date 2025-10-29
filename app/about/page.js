@@ -27,7 +27,7 @@ export default function About() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-gray-300 leading-relaxed text-lg mb-6"
           >
-            I'm <span className="text-red-400 font-semibold">Shahrukh Bilal</span>, 
+            I am <span className="text-red-400 font-semibold">Shahrukh Bilal</span>, 
             a dedicated <span className="text-red-400">MERN Stack Developer</span> trained at 
             <span className="text-yellow-400"> Logic Racks Academy</span>. I love building 
             modern web applications that are clean, fast, and scalable — using 
