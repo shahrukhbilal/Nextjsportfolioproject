@@ -23,9 +23,10 @@ export default function Projects() {
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <h1 className="text-5xl font-extrabold mb-4">
-          My <span className="text-red-500">Projects</span>
-        </h1>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-center md:text-center leading-tight">
+  My <span className="text-red-500">Projects</span>
+</h1>
+
         <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
           Here are some of my featured works built using the{" "}
           <span className="text-red-400 font-semibold">MERN Stack</span>.  

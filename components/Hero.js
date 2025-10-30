@@ -1,4 +1,4 @@
-"use client"; // agar Next.js app router use kar rahe ho
+"use client";
 import { motion } from "framer-motion";
 import { FaLaptopCode } from "react-icons/fa";
 import Image from "next/image";
@@ -6,67 +6,62 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="h-screen flex flex-col justify-center bg-gradient-to-r from-red-900 via-black to-red-900 text-white px-8">
+    <section className="min-h-screen flex flex-col justify-center bg-gradient-to-r from-red-900 via-black to-red-900 text-white px-5 sm:px-8 py-10">
       {/* 🔹 Top Tagline */}
       <motion.div
-        initial={{ opacity: 0, y: -50 }} // start (upar se invisible)
-        animate={{ opacity: 1, y: 0 }}   // end (neeche aa jaye visible)
+        initial={{ opacity: 0, y: -50 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
-        className="flex w-full items-center gap-5 mb-12"
+        className="flex flex-col sm:flex-row w-full items-center sm:items-start gap-3 sm:gap-5 mb-10 text-center sm:text-left"
       >
-        <FaLaptopCode className="text-yellow-400 text-5xl" />
-        <h1 className="text-4xl md:text-5xl font-extrabold">
+        <FaLaptopCode className="text-yellow-400 text-4xl sm:text-5xl" />
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold leading-snug">
           Tech World:{" "}
           <span className="text-red-400">Where Ideas Become Software</span>
         </h1>
       </motion.div>
 
       {/* 🔹 Main Content (Text + Image side by side) */}
-      <div className="flex mx-3.5 flex-col md:flex-row items-center justify-between gap-10">
-        
+      <div className="flex flex-col-reverse md:flex-row items-center justify-between gap-10">
         {/* Left Side Content */}
-        <div className="max-w-2xl text-center md:text-left">
-          {/* Name */}
+        <div className="max-w-2xl text-center md:text-left px-2">
           <motion.h1
-            initial={{ opacity: 0, x: -100 }} // left se slide in
+            initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="text-5xl font-bold mb-4"
+            className="text-4xl sm:text-5xl font-bold mb-4"
           >
             Hi, I am <span className="text-red-400">Shahrukh Bilal</span>
           </motion.h1>
 
-          {/* Title */}
           <motion.h2
             initial={{ opacity: 0, x: -100 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-2xl font-semibold mb-6"
+            className="text-xl sm:text-2xl font-semibold mb-6"
           >
             MERN Stack Developer | Full Stack Engineer
           </motion.h2>
 
-          {/* Tagline */}
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.9 }}
-            className="max-w-xl text-lg mb-8 text-gray-300"
+            className="max-w-xl text-base sm:text-lg mb-8 text-gray-300"
           >
             I build modern web applications with React, Next.js, Node.js, and
             MongoDB. Check out my projects and skills below!
           </motion.p>
 
-          {/* Buttons */}
           <motion.div
-            initial={{ opacity: 0, y: 50 }} // neeche se upar slide
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1.2 }}
-            className="flex gap-4 justify-center md:justify-start"
+            className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
           >
             <Link
               href="/projects"
-              className="bg-red-400 hover:bg-red-600 px-6 py-3 rounded-lg font-medium transition-transform hover:scale-105"
+              className="bg-red-400 hover:bg-red-600 px-6 py-3 rounded-lg font-medium transition-transform hover:scale-105 text-center"
             >
               View Projects
             </Link>
@@ -74,7 +69,7 @@ export default function Hero() {
             <a
               href="/cv.pdf"
               download
-              className="border border-white px-6 py-3 rounded-lg hover:bg-red-600 hover:text-white font-medium transition-transform hover:scale-105"
+              className="border border-white px-6 py-3 rounded-lg hover:bg-red-600 hover:text-white font-medium transition-transform hover:scale-105 text-center"
             >
               Download CV
             </a>
@@ -83,16 +78,16 @@ export default function Hero() {
 
         {/* Right Side Image */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.5 }} // zoom out se start
-          animate={{ opacity: 1, scale: 1 }}   // zoom in + visible
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 1 }}
-          className="relative w-64 h-64 md:w-80 md:h-80"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0"
         >
           <Image
             src="/profile.jpg"
             alt="My Profile Picture"
             fill
-            className="rounded-4xl object-cover border-4 border-red-400 shadow-lg"
+            className="rounded-3xl object-cover border-4 border-red-400 shadow-lg"
           />
         </motion.div>
       </div>

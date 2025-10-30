@@ -1,177 +1,119 @@
 "use client";
-import { useState } from "react";
+
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt, FaGithub, FaLinkedin } from "react-icons/fa";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
   const [loading, setLoading] = useState(false);
 
-  // 🌈 Handle input changes
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // 🚀 Handle form submission (send to backend)
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(form),
       });
-
       const data = await res.json();
-
       if (res.ok) {
-        toast.success("Message sent successfully 🎉");
-        setFormData({ name: "", email: "", message: "" });
+        toast.success("Message sent successfully!");
+        setForm({ name: "", email: "", message: "" });
       } else {
-        toast.error(data.error || "Failed to send message ❌");
+        toast.error(data.message || "Failed to send message.");
       }
-    } catch (err) {
-      toast.error("Something went wrong ⚠️");
-      console.error(err);
+    } catch (error) {
+      toast.error("Something went wrong!");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-red-900 via-black to-red-900 text-white flex items-center justify-center px-6 py-10">
-      <ToastContainer position="top-center" />
-
+    <div className="min-h-screen bg-gradient-to-r from-red-900 via-black to-red-900 text-white flex items-center justify-center px-4 sm:px-6 py-8 sm:py-10">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
-        className="max-w-6xl w-full grid md:grid-cols-2 gap-10 bg-white/80 backdrop-blur-md rounded-2xl shadow-2xl p-10 border border-white/30"
+        className="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-10 bg-white/80 backdrop-blur-md rounded-xl shadow-2xl p-6 sm:p-8 md:p-10 border border-white/30"
       >
-        {/* LEFT SIDE */}
-        <motion.div
-          initial={{ x: -50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 to-red-600 bg-clip-text text-transparent">
-            Get in Touch
+        {/* ---------- LEFT SECTION ---------- */}
+        <div className="flex flex-col justify-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-red-600 to-red-600 bg-clip-text text-transparent text-center md:text-left leading-tight">
+            Contact Me
           </h2>
-          <p className="text-gray-700 mb-8">
-            I’d love to hear from you! Whether you want to discuss a project, ask a question, or just say hi 👋
+          <p className="text-gray-700 mb-6 text-center md:text-left text-sm sm:text-base">
+            Have a question, idea, or project in mind? Feel free to reach out
+            using the form. I’d love to hear from you!
           </p>
+          <ul className="space-y-3 text-gray-800 text-center md:text-left text-sm sm:text-base">
+            <li>
+              <strong>Email:</strong> southsec021karachi@gmail.com
+            </li>
+            <li>
+              <strong>Phone:</strong> +92 3186198386
+            </li>
+            <li>
+              <strong>Location:</strong> Karachi, Pakistan
+            </li>
+          </ul>
+        </div>
 
-          <div className="space-y-4">
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 text-gray-800">
-              <FaEnvelope className="text-red-600 text-xl" />
-              <span>southsec021karachi.com</span>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 text-gray-800">
-              <FaPhoneAlt className="text-red-600 text-xl" />
-              <span>+92 3186198386</span>
-            </motion.div>
-
-            <motion.div whileHover={{ scale: 1.05 }} className="flex items-center space-x-3 text-gray-800">
-              <FaMapMarkerAlt className="text-red-600 text-xl" />
-              <span>Karachi, Pakistan</span>
-            </motion.div>
-          </div>
-
-          {/* Social Links */}
-          <div className="flex space-x-4 mt-8">
-            <motion.a
-              whileHover={{ scale: 1.2, rotate: 5 }}
-              href="https://github.com/"
-              target="_blank"
-              className="text-red-600 text-4xl transition"
-            >
-              <FaGithub />
-            </motion.a>
-
-            <motion.a
-              whileHover={{ scale: 1.2, rotate: -5 }}
-              href="https://linkedin.com/"
-              target="_blank"
-              className="text-red-600 text-4xl transition"
-            >
-              <FaLinkedin />
-            </motion.a>
-          </div>
-        </motion.div>
-
-        {/* RIGHT SIDE (FORM) */}
-        <motion.form
-          onSubmit={handleSubmit}
-          initial={{ x: 50, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-6"
-        >
-          <h2 className="text-3xl font-semibold text-red-800 mb-4">Send a Message</h2>
-
-          {/* Name */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Name</label>
+        {/* ---------- RIGHT SECTION (FORM) ---------- */}
+        <div>
+          <h2 className="text-2xl sm:text-3xl font-semibold text-red-800 mb-4 text-center md:text-left leading-tight">
+            Send a Message
+          </h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
             <input
               type="text"
               name="name"
-              value={formData.name}
+              placeholder="Your Name"
+              value={form.name}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-black"
-              placeholder="Your name"
+              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none text-gray-800 text-sm sm:text-base"
             />
-          </div>
 
-          {/* Email */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input
               type="email"
               name="email"
-              value={formData.email}
+              placeholder="Your Email"
+              value={form.email}
               onChange={handleChange}
               required
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-black"
-              placeholder="Your email"
+              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none text-gray-800 text-sm sm:text-base"
             />
-          </div>
 
-          {/* Message */}
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Message</label>
             <textarea
               name="message"
-              value={formData.message}
+              placeholder="Your Message"
+              value={form.message}
               onChange={handleChange}
               required
-              rows="4"
-              className="w-full border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-red-500 bg-white text-black"
-              placeholder="Write your message..."
-            ></textarea>
-          </div>
+              rows="5"
+              className="w-full p-3 rounded-lg bg-gray-100 border border-gray-300 focus:ring-2 focus:ring-red-500 focus:outline-none text-gray-800 text-sm sm:text-base resize-none"
+            />
 
-          {/* Submit Button */}
-          <motion.button
-            whileHover={{
-              scale: 1.05,
-              boxShadow: "0 0 20px rgba(239, 68, 68, 0.5)",
-            }}
-            whileTap={{ scale: 0.95 }}
-            type="submit"
-            disabled={loading}
-            className="w-full bg-gradient-to-r from-red-500 to-red-600 text-black font-medium py-3 rounded-lg shadow-md hover:opacity-90 transition duration-300"
-          >
-            {loading ? "Sending..." : "Send Message 🚀"}
-          </motion.button>
-        </motion.form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full bg-red-700 text-white py-3 rounded-lg font-semibold hover:bg-red-800 transition duration-300 disabled:opacity-70 text-sm sm:text-base"
+            >
+              {loading ? "Sending..." : "Send Message"}
+            </button>
+          </form>
+        </div>
       </motion.div>
+
+      <ToastContainer position="bottom-right" autoClose={3000} />
     </div>
   );
 }
