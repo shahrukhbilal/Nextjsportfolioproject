@@ -84,7 +84,7 @@ export default function Hero() {
           className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0"
         >
           <Image
-            src="/profile.jpg"
+            src="/newProfile.png"
             alt="My Profile Picture"
             fill
             className="rounded-3xl object-cover border-4 border-red-400 shadow-lg"

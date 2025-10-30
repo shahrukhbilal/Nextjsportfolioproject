@@ -2,33 +2,42 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
+import About from "@/app/about/page";
+import Link from "next/link";
+
 
 const timeline = [
   {
     id: 1,
-    year: "2024 - 2025",
-    title: "MERN Stack Developer",
-    place: "Logic Racks",
+    year: "2021 - 2022",
+    title: "Beginning of My Tech Journey",
     description:
-      "Worked on multiple MERN stack projects using React, Tailwind CSS, and JavaScript, node/express, MongoDb.",
+      "Discovered a passion for technology and started learning the fundamentals of web development — HTML, CSS, and JavaScript. Built my first responsive webpage, which ignited my interest in creating digital experiences.",
     icon: <Briefcase className="w-6 h-6 text-blue-600" />,
   },
   {
     id: 2,
-    year: "2024 - 2025",
-    title: "Frontend Developer",
-    place: "Logic Racks",
+    year: "2022 - 2023",
+    title: "Frontend Development",
     description:
-      "Worked on multiple projects using React, Tailwind CSS, and JavaScript.",
+      "Focused on mastering frontend technologies such as React.js and Tailwind CSS. Developed interactive UI components and small projects to strengthen practical skills and understanding of modern web applications.",
     icon: <Briefcase className="w-6 h-6 text-blue-600" />,
   },
   {
     id: 3,
-    year: "2014 - 2015",
-    title: "Matriculate",
-    place: "govt Central Model School Minawali",
+    year: "2023 - 2024",
+    title: "Backend Development",
     description:
-      "Studied core concepts of computer",
+      "Expanded my expertise to backend development using Node.js, Express.js, and MongoDB. Learned to build RESTful APIs, connect them with frontend applications, and manage databases efficiently for real-world projects.",
+    icon: <GraduationCap className="w-6 h-6 text-purple-600" />,
+  },
+  {
+    id: 4,
+    year: "2024 - 2025",
+    title: "Full-Stack Projects",
+    place: "Logic Racks Academy",
+    description:
+      "Completed a professional web development course at Logic Racks Academy, where I further honed my skills in building full-stack applications. Developed projects using React.js + Vite, implementing features like JWT authentication, API integration, and deployment for production-ready applications.",
     icon: <GraduationCap className="w-6 h-6 text-purple-600" />,
   },
 ];
@@ -72,14 +81,22 @@ const MyJourney = () => {
                 <h3 className="text-xl font-semibold text-gray-800 mt-1">
                   {item.title}
                 </h3>
-                <p className="text-gradient font-medium bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                <p className="text-gradient font-large bg-clip-text text-transparent bg-gradient-to-r from-blue-800 to-purple-600 font-extrabold">
                   {item.place}
                 </p>
                 <p className="mt-2 text-gray-600">{item.description}</p>
+                
               </motion.div>
+                          
             </motion.div>
+
+
+            
           ))}
         </div>
+         <p className="font-large  text-3xl text-center bg-clip-text text-transparent bg-gradient-to-r from-white to-white font-extrabold">You can visit the <Link href="/about" className="text-red-600 underline">
+  About page
+</Link> to see my certificate from Logic Racks Academy.</p>
       </div>
     </section>
   );
