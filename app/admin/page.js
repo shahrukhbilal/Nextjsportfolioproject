@@ -3,7 +3,6 @@ import { getUserFromCookie } from "@/lib/auth";
 
 export default async function AdminDashboard() {
   const user = await getUserFromCookie(); // auth.js ka function, async ho sakta hai
-console.log("User from cookie:", user);
 
   if (!user || user.role !== "admin") {
     return (
@@ -26,5 +25,4 @@ console.log("User from cookie:", user);
         </Link>
       </div>
     </div>
-  );
-}
+  );}
