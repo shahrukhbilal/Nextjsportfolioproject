@@ -68,9 +68,9 @@ export default function About() {
           transition={{ duration: 1, delay: 0.5 }}
           className="flex justify-center"
         >
-          <div className="relative group w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div className="relative group w-58 h-52 sm:w-64 sm:h-64 md:w-90 md:h-80 lg:w-120 lg:h-96">
             <Image
-              src="/certificate image.jpg"
+              src="/certificate2.JPG"
               alt="Certificate"
               fill
               className="rounded-3xl object-cover border-4 border-red-500 shadow-[0_0_30px_rgba(255,0,0,0.5)] group-hover:scale-105 transition-transform duration-500"
