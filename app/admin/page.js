@@ -1,28 +1,49 @@
 import Link from "next/link";
-import { getUserFromCookie } from "@/lib/auth";
+import { cookies } from "next/headers";
+import jwt from "jsonwebtoken";
 
 export default async function AdminDashboard() {
-  const user = await getUserFromCookie(); // auth.js ka function, async ho sakta hai
+  const cookieStore =await cookies();
+  const token = cookieStore.get("token")?.value;
 
-  if (!user || user.role !== "admin") {
-    return (
-      <div className="p-8 text-center">
-        <p className="text-red-600 mb-4">Not authorized.</p>
-        <Link href="/auth/login" className="text-blue-600 underline">Login</Link>
-      </div>
-    );
+  if (!token) {
+    return <NotAuthorized />;
+  }
+
+  let decoded;
+
+  try {
+    decoded = jwt.verify(token, process.env.JWT_SECRET);
+  } catch (err) {
+    return <NotAuthorized />;
+  }
+
+  if (decoded.role !== "admin") {
+    return <NotAuthorized />;
   }
 
   return (
     <div className="p-8 space-y-6">
       <h1 className="text-4xl font-bold">Admin Dashboard</h1>
       <div className="flex gap-4">
-        <Link href="/admin/upload" className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition">
+        <Link href="/admin/upload" className="px-4 py-2 bg-blue-600 text-white rounded">
           Upload Project
         </Link>
-        <Link href="/admin/projects" className="px-4 py-2 bg-gray-900 text-white rounded hover:bg-gray-800 transition">
+        <Link href="/admin/projects" className="px-4 py-2 bg-gray-900 text-white rounded">
           Manage Projects
         </Link>
       </div>
     </div>
-  );}
+  );
+}
+
+function NotAuthorized() {
+  return (
+    <div className="p-8 text-center">
+      <p className="text-red-600 mb-4">Not authorized.</p>
+      <Link href="/auth/login" className="text-blue-600 underline">
+        Login
+      </Link>
+    </div>
+  );
+}

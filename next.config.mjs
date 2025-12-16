@@ -1,8 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ["i.pinimg.com", "www.pinterest.com"], // 👈 yahan apna image domain likho
+    domains: [
+      "i.ibb.co",        // ✅ ImgBB direct images
+      "i.pinimg.com",    // ✅ Pinterest images
+    ],
   },
 };
 
-export default nextConfig; // 👈 yeh line use karo
+export default nextConfig;

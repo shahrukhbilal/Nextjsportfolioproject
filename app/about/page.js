@@ -7,10 +7,10 @@ export default function About() {
   return (
     <section className="min-h-screen flex flex-col justify-center bg-gradient-to-r from-red-900 via-black to-red-900 text-white px-4 sm:px-6 md:px-8 py-12 sm:py-16">
       <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 items-center">
-
+        
         {/* 🔹 LEFT SIDE - About + Skills */}
         <motion.div
-          initial={{ opacity: 0, x: -100 }} // slide in from left
+          initial={{ opacity: 0, x: -100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1 }}
         >
@@ -63,12 +63,12 @@ export default function About() {
 
         {/* 🔹 RIGHT SIDE - Certificate Image */}
         <motion.div
-          initial={{ opacity: 0, x: 100 }} // slide from right
+          initial={{ opacity: 0, x: 100 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1, delay: 0.5 }}
-          className="flex justify-center"
+          className="flex flex-col justify-center items-center"
         >
-          <div className="relative group w-58 h-52 sm:w-64 sm:h-64 md:w-90 md:h-80 lg:w-120 lg:h-96">
+          <div className="relative group w-56 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-108 lg:h-96">
             <Image
               src="/certificate2.JPG"
               alt="Certificate"
@@ -79,6 +79,16 @@ export default function About() {
             {/* Glow Animation Layer */}
             <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-red-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
           </div>
+
+          {/* 🔗 PDF Link */}
+          <a
+            href="/Shahrukh Bilal (1).pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-5 text-yellow-400 hover:text-red-400 transition text-lg font-medium"
+          >
+            📄 View Full Certificate (PDF)
+          </a>
         </motion.div>
       </div>
     </section>

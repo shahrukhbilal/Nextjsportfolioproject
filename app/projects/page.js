@@ -1,4 +1,5 @@
 "use client";
+
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaCodeBranch, FaExternalLinkAlt } from "react-icons/fa";
@@ -23,9 +24,9 @@ export default function Projects() {
         transition={{ duration: 0.8 }}
         className="text-center mb-16"
       >
-        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 text-center md:text-center leading-tight">
-  My <span className="text-red-500">Projects</span>
-</h1>
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-extrabold mb-4 leading-tight">
+          My <span className="text-red-500">Projects</span>
+        </h1>
 
         <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
           Here are some of my featured works built using the{" "}
@@ -48,20 +49,24 @@ export default function Projects() {
               className="bg-gray-800 bg-opacity-70 border border-gray-700 rounded-2xl overflow-hidden shadow-lg hover:shadow-red-500/40 transition-all duration-300"
             >
               {/* 🔸 Project Image */}
-              {p.image && (
+              {p.image && typeof p.image === "string" && (
                 <div className="relative w-full h-56">
                   <Image
                     src={p.image}
-                    alt={p.title}
+                    alt={p.title || "Project Image"}
                     fill
                     className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
               )}
 
               {/* 🔸 Project Details */}
               <div className="p-6 space-y-4">
-                <h2 className="text-2xl font-bold text-red-400">{p.title}</h2>
+                <h2 className="text-2xl font-bold text-red-400">
+                  {p.title}
+                </h2>
+
                 <p className="text-gray-300 text-sm leading-relaxed">
                   {p.description}
                 </p>
@@ -105,15 +110,18 @@ export default function Projects() {
                     <a
                       href={p.github}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 text-blue-400 hover:text-blue-300 transition"
                     >
                       <FaCodeBranch /> GitHub
                     </a>
                   )}
+
                   {p.liveDemo && (
                     <a
                       href={p.liveDemo}
                       target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center gap-2 text-green-400 hover:text-green-300 transition"
                     >
                       <FaExternalLinkAlt /> Live Demo
