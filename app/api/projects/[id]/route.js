@@ -19,9 +19,11 @@ export async function PUT(req, { params }) {
   return Response.json(updated);
 }
 
-export async function DELETE(req, { params }) {
-  console.log(params.id)
-  const gate = await requireAdmin(req);  // ✅ await lagao aur req pass karo
+export async function DELETE(req, context) {
+  const params = await context.params;  // ✅ unwrap the promise
+  
+
+  const gate = await requireAdmin(req);
   if (!gate.ok) return Response.json(gate.body, { status: gate.status });
 
   await connectDB();

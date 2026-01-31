@@ -37,7 +37,7 @@ export default function ManageProjects() {
 
   // 🔹 Delete project
   const delItem = async (id) => {
-     console.log("Deleting ID:", id);
+
     if (!confirm("Delete this project?")) return;
 
     try {
