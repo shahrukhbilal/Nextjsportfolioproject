@@ -44,6 +44,7 @@ export default function ManageProjects() {
 
       const res = await fetch(`/api/projects/${id}`, {
         method: "DELETE",
+         credentials: "include",
       });
 
       if (!res.ok) {
