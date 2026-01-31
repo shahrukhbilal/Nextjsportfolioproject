@@ -20,6 +20,7 @@ export async function PUT(req, { params }) {
 }
 
 export async function DELETE(req, { params }) {
+  console.log(params.id)
   const gate = await requireAdmin(req);  // ✅ await lagao aur req pass karo
   if (!gate.ok) return Response.json(gate.body, { status: gate.status });
 
