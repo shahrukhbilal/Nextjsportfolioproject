@@ -9,15 +9,37 @@ export async function GET(_req, { params }) {
   return Response.json(item);
 }
 
-export async function PUT(req, { params }) {
-  const gate = requireAdmin();
-  if (!gate.ok) return Response.json(gate.body, { status: gate.status });
+export async function PUT(req, context) {
+  const params = await context.params; // ✅ VERY IMPORTANT
+
+  const gate = await requireAdmin(req);
+  if (!gate.ok) {
+    return Response.json(gate.body, { status: gate.status });
+  }
 
   await connectDB();
+
   const data = await req.json();
-  const updated = await Project.findByIdAndUpdate(params.id, data, { new: true });
+
+  
+
+  const updated = await Project.findByIdAndUpdate(
+    params.id,
+    data,
+    { new: true }
+  );
+
+  if (!updated) {
+    return Response.json(
+      { message: "No document found with this id" },
+      { status: 404 }
+    );
+  }
+
   return Response.json(updated);
 }
+
+
 
 export async function DELETE(req, context) {
   const params = await context.params;  // ✅ unwrap the promise
