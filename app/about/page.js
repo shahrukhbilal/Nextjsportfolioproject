@@ -27,13 +27,15 @@ export default function About() {
             transition={{ duration: 1, delay: 0.3 }}
             className="text-gray-300 leading-relaxed text-base sm:text-lg mb-6"
           >
-            I am{" "}
+            Hi, I’m{" "}
             <span className="text-red-400 font-semibold">Shahrukh Bilal</span>, a
             dedicated <span className="text-red-400">MERN Stack Developer</span>{" "}
             trained at{" "}
-            <span className="text-yellow-400">Logic Racks Academy</span>. I love
-            building modern web applications that are clean, fast, and scalable —
-            using React, Node.js, and MongoDB.
+            <span className="text-yellow-400">Logic Racks Academy</span>. I build responsive, scalable web applications with clean architecture and smooth user experiences. I’m passionate about turning complex problems into elegant software solutions and constantly learning new technologies to grow as a professional.
+
+I work with React, Next.js, Node.js, Express, and MongoDB to build production-ready applications. I also enjoy creating animations with Framer Motion and optimizing UI with Tailwind CSS.
+
+When I’m not coding, I explore new tools, contribute to open source, and keep building projects that push my skills further.
           </motion.p>
 
           <motion.h2
