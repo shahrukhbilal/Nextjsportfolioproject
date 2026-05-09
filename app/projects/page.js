@@ -21,7 +21,7 @@ export default function Projects() {
   }, []);
 
   return (
-    <section className="min-h-screen bg-gradient-to-r from-black via-gray-900 to-black text-white py-16 px-8">
+    <section className="min-h-screen bg-linear-to-r from-black via-gray-900 to-black text-white py-16 px-8">
       {/* 🔹 Heading Section */}
       <motion.div
         initial={{ opacity: 0, y: -40 }}
@@ -35,22 +35,23 @@ export default function Projects() {
 
         <p className="text-gray-400 text-lg max-w-3xl mx-auto leading-relaxed">
           Here are some of my featured works built using the{" "}
-          <span className="text-red-400 font-semibold">MERN Stack</span>.  
-          Each project showcases my expertise in full-stack development,
-          clean UI design, and scalable backend structure.
+          <span className="text-red-400 font-semibold">MERN Stack</span>. Each
+          project showcases my expertise in full-stack development, clean UI
+          design, and scalable backend structure.
         </p>
       </motion.div>
 
       {/* 🔹 Projects Grid */}
       <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {loading ? (
-          <motion.p
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center text-gray-400 col-span-full"
+            className="col-span-full flex flex-col items-center justify-center py-10 text-gray-400"
           >
-            Loading projects...
-          </motion.p>
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            <p className="mt-4">Loading projects...</p>
+          </motion.div>
         ) : projects.length > 0 ? (
           projects.map((p, i) => (
             <motion.div
@@ -76,9 +77,7 @@ export default function Projects() {
 
               {/* 🔸 Project Details */}
               <div className="p-6 space-y-4">
-                <h2 className="text-2xl font-bold text-red-400">
-                  {p.title}
-                </h2>
+                <h2 className="text-2xl font-bold text-red-400">{p.title}</h2>
 
                 <p className="text-gray-300 text-sm leading-relaxed">
                   {p.description}
