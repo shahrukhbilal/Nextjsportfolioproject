@@ -50,7 +50,7 @@ export default function Projects() {
             className="col-span-full flex flex-col items-center justify-center py-10 text-gray-400"
           >
             <div className="w-12 h-12 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin"></div>
-            <p className="mt-4">Loading projects...</p>
+            <p className="mt-4 font-bold text-white">Loading projects...</p>
           </motion.div>
         ) : projects.length > 0 ? (
           projects.map((p, i) => (
