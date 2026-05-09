@@ -49,7 +49,7 @@ export default function Projects() {
             animate={{ opacity: 1 }}
             className="col-span-full flex flex-col items-center justify-center py-10 text-gray-400"
           >
-            <div className="w-12 h-12 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-red-500 rounded-full animate-spin"></div>
             <p className="mt-4">Loading projects...</p>
           </motion.div>
         ) : projects.length > 0 ? (
