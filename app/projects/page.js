@@ -7,12 +7,17 @@ import { useEffect, useState } from "react";
 
 export default function Projects() {
   const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("/api/projects")
       .then((res) => res.json())
-      .then((data) => setProjects(data))
-      .catch((err) => console.error(err));
+      .then((data) => setProjects(Array.isArray(data) ? data : []))
+      .catch((err) => {
+        console.error(err);
+        setProjects([]);
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -38,7 +43,15 @@ export default function Projects() {
 
       {/* 🔹 Projects Grid */}
       <div className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {projects.length > 0 ? (
+        {loading ? (
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center text-gray-400 col-span-full"
+          >
+            Loading projects...
+          </motion.p>
+        ) : projects.length > 0 ? (
           projects.map((p, i) => (
             <motion.div
               key={p._id}

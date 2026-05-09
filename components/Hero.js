@@ -6,7 +6,7 @@ import Link from "next/link";
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col justify-center bg-gradient-to-r from-red-900 via-black to-red-900 text-white px-5 sm:px-8 py-10">
+    <section className="min-h-screen flex flex-col justify-center bg-linear-to-r from-red-900 via-black to-red-900 text-white px-5 sm:px-8 py-10">
       {/* 🔹 Top Tagline */}
       <motion.div
         initial={{ opacity: 0, y: -50 }}
@@ -66,13 +66,13 @@ export default function Hero() {
               View Projects
             </Link>
 
-            <a
+            <Link
               href="/My new resume.pdf.pdf" 
               download
               className="border border-white px-6 py-3 rounded-lg hover:bg-red-600 hover:text-white font-medium transition-transform hover:scale-105 text-center"
             >
               Download CV
-            </a>
+            </Link>
           </motion.div>
         </div>
 
@@ -81,12 +81,13 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 1 }}
-          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex-shrink-0"
+          className="relative w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 shrink-0"
         >
           <Image
             src="/newProfile.png"
             alt="My Profile Picture"
             fill
+            sizes="(max-width: 768px) 100vw, 50vw"
             className="rounded-3xl object-cover border-4 border-red-400 shadow-lg"
           />
         </motion.div>
